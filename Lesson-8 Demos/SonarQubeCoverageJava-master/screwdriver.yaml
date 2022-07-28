@@ -1,0 +1,6 @@
+jobs:
+  main:
+    image: maven:latest
+    requires: [~pr, ~commit]
+    steps:
+      - test: mvn test

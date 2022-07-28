@@ -1,0 +1,16 @@
+---
+- hosts: webservers
+  gather_facts: no
+  become: no
+  vars:
+    ports_mapping: "8090:8090"
+  tasks:
+        
+    - name: Create Application container
+      docker_container:
+        name: docker-pipeline
+        image: anujsharma1990/docker-pipeline:latest
+        state: started
+        recreate: yes
+        exposed_ports:
+          - "{{ ports_mapping }}"
